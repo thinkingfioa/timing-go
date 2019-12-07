@@ -12,16 +12,22 @@
 
   <artifactId>timing-go-scheduler</artifactId>
 
-  <name>timing-go-scheduler</name>
-
   <dependencies>
+    <!-- common module-->
+    <dependency>
+      <groupId>thinking_fioa</groupId>
+      <artifactId>timing-go-common</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+    <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-
+    <finalName>timing-go-scheduler</finalName>
   </build>
 </project>

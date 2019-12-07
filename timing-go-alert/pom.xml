@@ -12,16 +12,15 @@
 
   <artifactId>timing-go-alert</artifactId>
 
-  <name>timing-go-alert</name>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-
+    <finalName>timing-go-alert</finalName>
   </build>
 </project>

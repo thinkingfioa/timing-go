@@ -12,15 +12,15 @@
 
   <artifactId>timing-go-rpc</artifactId>
 
-  <name>timing-go-rpc</name>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
+    <finalName>timing-go-rpc</finalName>
   </build>
 </project>
