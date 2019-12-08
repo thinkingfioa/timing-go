@@ -22,12 +22,26 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
     <log4j2.version>2.12.1</log4j2.version>
     <junit.version>4.12</junit.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <!-- spring -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-autoconfigure</artifactId>
+        <version>${spring.boot.version}</version>
+      </dependency>
       <!-- log4j2 -->
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -57,6 +71,11 @@
 
   <build>
     <plugins>
+      <!-- spring boot package plugin -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
       <!-- resources copy plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

@@ -13,6 +13,11 @@
   <artifactId>timing-go-common</artifactId>
 
   <dependencies>
+    <!-- spring boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
     <!-- log4j2 -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
