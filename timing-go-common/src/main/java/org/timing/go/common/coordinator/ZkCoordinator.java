@@ -34,9 +34,9 @@ public class ZkCoordinator implements IDistributeCoordinator {
 //          .connectString(zkConfig.getServerLists()).retryPolicy(retryPolicy)
 //          .namespace(zkConfig.getNamespace())
 //          .sessionTimeoutMs(
-//              1000 * Integer.parseInt(conf.getString(Constants.ZOOKEEPER_SESSION_TIMEOUT)))
+//              1000 * Integer.parseInt(org.timing.go.scheduler.conf.getString(Constants.ZOOKEEPER_SESSION_TIMEOUT)))
 //          .connectionTimeoutMs(
-//              1000 * Integer.parseInt(conf.getString(Constants.ZOOKEEPER_CONNECTION_TIMEOUT)))
+//              1000 * Integer.parseInt(org.timing.go.scheduler.conf.getString(Constants.ZOOKEEPER_CONNECTION_TIMEOUT)))
 //          .build();
 
       zkClient.start();

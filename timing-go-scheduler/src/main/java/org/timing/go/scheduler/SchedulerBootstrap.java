@@ -1,11 +1,13 @@
 package org.timing.go.scheduler;
 
+import javax.annotation.Resource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
+import org.timing.go.scheduler.cfg.SchedulerZkCfg;
 
 /**
  * Scheduler 启动入口
@@ -18,6 +20,9 @@ public class SchedulerBootstrap implements CommandLineRunner {
 
   private static final Logger LOGGER = LogManager.getLogger(SchedulerBootstrap.class);
 
+  @Resource
+  private SchedulerZkCfg zkCfg;
+
   public static void main(String[] args) {
     SpringApplication bootstrap = new SpringApplication(SchedulerBootstrap.class);
     bootstrap.run(args);
@@ -25,6 +30,6 @@ public class SchedulerBootstrap implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    LOGGER.info("hello world");
+    LOGGER.info("hello world. {}", zkCfg.getZkQuorum());
   }
 }
