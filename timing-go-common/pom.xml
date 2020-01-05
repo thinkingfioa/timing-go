@@ -32,6 +32,11 @@
       <artifactId>disruptor</artifactId>
     </dependency>
     <!-- log4j2 end -->
+    <!-- curator -->
+    <dependency>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-recipes</artifactId>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
