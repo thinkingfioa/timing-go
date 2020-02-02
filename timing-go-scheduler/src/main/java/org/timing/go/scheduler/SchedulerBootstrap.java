@@ -32,4 +32,8 @@ public class SchedulerBootstrap implements CommandLineRunner {
   public void run(String... args) throws Exception {
     LOGGER.info("hello world. {}", zkCfg.getZkQuorum());
   }
+
+  public void printInfo() {
+    // TODO 输出配置信息.
+  }
 }

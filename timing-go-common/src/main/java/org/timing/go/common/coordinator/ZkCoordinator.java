@@ -1,7 +1,12 @@
 package org.timing.go.common.coordinator;
 
 import java.util.List;
+import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.state.ConnectionState;
+import org.apache.curator.framework.state.ConnectionStateListener;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,32 +19,39 @@ public class ZkCoordinator implements IDistributeCoordinator {
 
   private static final Logger LOGGER = LogManager.getLogger(ZkCoordinator.class);
 
+  private IZkCfg zkCfg;
+
   private CuratorFramework zkClient;
 
-  public ZkCoordinator() {
-
+  public ZkCoordinator(IZkCfg zkCfg) {
+    this.zkCfg = zkCfg;
   }
 
   @Override
   public void init() {
-    LOGGER.info("connect and start zookeeper");
-    // TODO 提供给配置文件
+    LOGGER.info("connect and start zookeeper. {}", zkCfg.getZkQuorum());
     // retry strategy，指数规避重试策略
-//    RetryPolicy retryPolicy = new ExponentialBackoffRetry(zkConfig.getBaseSleepTimeMilliseconds(),
-//        zkConfig.getMaxRetries(), zkConfig.getMaxSleepTimeMilliseconds());
+    RetryPolicy retryPolicy = new ExponentialBackoffRetry(zkCfg.getZkRetryBaseSleepTime(),
+        zkCfg.getZkMaxRetries(), zkCfg.getZkRetryMaxSleepTime());
 
     try {
       // crate zookeeper client
-//      CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
-//          .connectString(zkConfig.getServerLists()).retryPolicy(retryPolicy)
-//          .namespace(zkConfig.getNamespace())
-//          .sessionTimeoutMs(
-//              1000 * Integer.parseInt(org.timing.go.scheduler.conf.getString(Constants.ZOOKEEPER_SESSION_TIMEOUT)))
-//          .connectionTimeoutMs(
-//              1000 * Integer.parseInt(org.timing.go.scheduler.conf.getString(Constants.ZOOKEEPER_CONNECTION_TIMEOUT)))
-//          .build();
+      CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
+          .connectString(zkCfg.getZkQuorum()).retryPolicy(retryPolicy)
+          .namespace(zkCfg.getNamespace())
+          .sessionTimeoutMs(zkCfg.getSessionTimemoutMs())
+          .connectionTimeoutMs(zkCfg.getConnectionTimeoutMs());
+
+      zkClient = builder.build();
 
       zkClient.start();
+      // add connection state lister
+      addConnStateLister((CuratorFramework client, ConnectionState newState) -> {
+        LOGGER.info("conn state change to {}", newState.name());
+        if (newState == ConnectionState.LOST) {
+          LOGGER.info("connection lost.");
+        }
+      });
     } catch (Exception cause) {
       LOGGER.warn("connect and start zookeeper.");
       throw cause;
@@ -48,7 +60,8 @@ public class ZkCoordinator implements IDistributeCoordinator {
 
   @Override
   public void start() {
-
+    zkClient.start();
+    LOGGER.info("zookeeper start.");
   }
 
   @Override
@@ -92,12 +105,16 @@ public class ZkCoordinator implements IDistributeCoordinator {
   }
 
   @Override
-  public void addLister() {
-
+  public void addConnStateLister(ConnectionStateListener connStateListener) {
+    if (zkClient == null) {
+      LOGGER.warn("zkClient is null");
+      return;
+    }
+    zkClient.getConnectionStateListenable().addListener(connStateListener);
   }
 
   @Override
   public Object getRawClient() {
-    return null;
+    return zkClient;
   }
 }

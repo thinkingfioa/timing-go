@@ -1,6 +1,7 @@
 package org.timing.go.common.coordinator;
 
 import java.util.List;
+import org.apache.curator.framework.state.ConnectionStateListener;
 
 /**
  * 分布式协调
@@ -80,9 +81,9 @@ public interface IDistributeCoordinator<T> {
   int getNumChildren(String key);
 
   /**
-   * 添加监听机制.
+   * 添加连接状态的监听机制.
    */
-  void addLister();
+  void addConnStateLister(ConnectionStateListener connStateListener);
 
   /**
    * 获取原生协调器的客户端.
