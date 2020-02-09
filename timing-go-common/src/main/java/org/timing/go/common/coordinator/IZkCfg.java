@@ -1,5 +1,7 @@
 package org.timing.go.common.coordinator;
 
+import java.nio.charset.Charset;
+
 /**
  * Zookeeper 配置抽象类.
  *
@@ -23,4 +25,6 @@ public interface IZkCfg {
   int getSessionTimemoutMs();
 
   int getConnectionTimeoutMs();
+
+  Charset dataCharset();
 }

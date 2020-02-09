@@ -1,5 +1,7 @@
 package org.timing.go.scheduler.cfg;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -18,32 +20,35 @@ public class SchedulerZkCfg implements IZkCfg {
   /**
    * 格式为${ip1}:2181,${ip2}:2181
    */
-  @Value(value = "${zookeeper.quorum}")
+  @Value(value = "${zookeeper.quorum:127.0.0.1}")
   private String zkQuorum;
 
   /**
    * unit ms
    */
-  @Value(value = "${zookeeper.base.sleep.time")
+  @Value(value = "${zookeeper.base.sleep.time:1000}")
   private int zkRetryBaseSleepTime;
 
-  @Value(value = "${zookeeper.max.retries")
+  @Value(value = "${zookeeper.max.retries:5}")
   private int zkMaxRetries;
 
   /**
    * unit ms
    */
-  @Value(value = "${zookeeper.retry.max.sleep.time}")
+  @Value(value = "${zookeeper.retry.max.sleep.time:3000}")
   private int zkRetryMaxSleepTime;
 
-  @Value(value = "${zookeeper.namespace}")
+  @Value(value = "${zookeeper.namespace:/timing-go/scheduler}")
   private String namespace;
 
-  @Value(value = "${zookeeper.session.timeout.ms}")
+  @Value(value = "${zookeeper.session.timeout.ms:3000}")
   private int sessionTimemoutMs;
 
-  @Value(value = "${zookeeper.connection.timeout.ms}")
+  @Value(value = "${zookeeper.connection.timeout.ms:3000}")
   private int connectionTimeoutMs;
+
+  @Value(value = "${zookeeper.charsets:UTF-8")
+  private Charset dataCharset;
 
   @Override
   public String getZkQuorum() {
@@ -78,5 +83,10 @@ public class SchedulerZkCfg implements IZkCfg {
   @Override
   public int getConnectionTimeoutMs() {
     return connectionTimeoutMs;
+  }
+
+  @Override
+  public Charset dataCharset() {
+    return StandardCharsets.UTF_8;
   }
 }

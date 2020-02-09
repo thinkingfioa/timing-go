@@ -2,13 +2,14 @@ package org.timing.go.common.coordinator;
 
 import java.util.List;
 import org.apache.curator.framework.state.ConnectionStateListener;
+import org.apache.zookeeper.CreateMode;
 
 /**
  * 分布式协调
  *
  * @author thinking_fioa 2020/1/5
  */
-public interface IDistributeCoordinator<T> {
+public interface IDistributeCoordinator {
 
   /**
    * 初始化分布式协调器.
@@ -46,8 +47,17 @@ public interface IDistributeCoordinator<T> {
    *
    * @param key 键
    * @param value 值
+   * @param nodeMode 节点模式.
    */
-  void persist(String key, String value);
+  void create(String key, String value, CreateMode nodeMode);
+
+  void createPersistent(String key, String value);
+
+  void createEphemeral(String key, String value);
+
+  void createPersistentSequential(String key, String value);
+
+  void createEphemeralSequential(String key, String value);
 
   /**
    * 更新注册数据.
@@ -90,5 +100,5 @@ public interface IDistributeCoordinator<T> {
    *
    * @return 注册中心的原生客户端
    */
-  T getRawClient();
+  Object getRawClient();
 }
