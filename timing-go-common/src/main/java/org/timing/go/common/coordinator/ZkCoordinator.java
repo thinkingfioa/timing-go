@@ -77,7 +77,7 @@ public class ZkCoordinator implements IDistributeCoordinator {
   @Override
   public String getData(String key) {
     try {
-      return new String(zkClient.getData().forPath(key), zkCfg.getDataCharset());
+      return new String(zkClient.getData().forPath(key), zkCfg.dataCharset());
     } catch (Exception cause) {
       LOGGER.info("key {} happen exception {}", key, cause);
       return null;
@@ -99,7 +99,7 @@ public class ZkCoordinator implements IDistributeCoordinator {
     try {
       if (!isExisted(key)) {
         zkClient.create().creatingParentsIfNeeded().withMode(nodeMode)
-            .forPath(key, value.getBytes(zkCfg.getDataCharset()));
+            .forPath(key, value.getBytes(zkCfg.dataCharset()));
       } else {
         update(key, value);
       }
@@ -139,7 +139,7 @@ public class ZkCoordinator implements IDistributeCoordinator {
   public void update(String key, String value) {
     try {
       zkClient.inTransaction().check().forPath(key).and().setData()
-          .forPath(key, value.getBytes(zkCfg.getDataCharset())).and().commit();
+          .forPath(key, value.getBytes(zkCfg.dataCharset())).and().commit();
     } catch (Exception cause) {
       LOGGER.info("key {} happen exception {}", key, cause);
     }
