@@ -47,9 +47,6 @@ public class SchedulerZkCfg implements IZkCfg {
   @Value(value = "${zookeeper.connection.timeout.ms:3000}")
   private int connectionTimeoutMs;
 
-  @Value(value = "${zookeeper.charsets:UTF-8")
-  private Charset dataCharset;
-
   @Override
   public String getZkQuorum() {
     return zkQuorum;

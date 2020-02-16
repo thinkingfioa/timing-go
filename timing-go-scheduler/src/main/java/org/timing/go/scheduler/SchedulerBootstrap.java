@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 import org.timing.go.scheduler.cfg.SchedulerZkCfg;
+import org.timing.go.scheduler.core.schedule.QuartzScheduler;
 
 /**
  * Scheduler 启动入口
@@ -30,7 +31,13 @@ public class SchedulerBootstrap implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    LOGGER.info("hello world. {}", zkCfg.getZkQuorum());
+    try {
+      printInfo();
+      QuartzScheduler.getInstance().start();
+      LOGGER.info("scheduler bootstrap start success.");
+    } catch (Throwable cause) {
+      LOGGER.error("scheduler bootstrap fail.", cause);
+    }
   }
 
   public void printInfo() {
