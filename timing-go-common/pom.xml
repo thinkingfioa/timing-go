@@ -37,6 +37,12 @@
       <groupId>org.apache.curator</groupId>
       <artifactId>curator-recipes</artifactId>
     </dependency>
+    <!-- druid -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+    </dependency>
+    <!-- druid end-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

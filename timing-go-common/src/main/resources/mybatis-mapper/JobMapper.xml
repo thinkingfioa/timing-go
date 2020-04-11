@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.timing.go.common.mapper.JobMapper">
+  <resultMap id="BaseResultMap" type="org.timing.go.common.entity.JobEntity">
+    <id column="ID" property="id" jdbcType="INTEGER"/>
+    <result column="JOB_KEY" property="jobKey" jdbcType="VARCHAR"/>
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR"/>
+    <result column="JOB_TRIGGER_TYPE" property="jobTriggerType" jdbcType="VARCHAR"/>
+    <result column="JOB_TRIGGER_VALUE" property="jobTriggerValue" jdbcType="VARCHAR"/>
+    <result column="JOB_DESC" property="jobDesc" jdbcType="VARCHAR"/>
+    <result column="JOB_ALARM_EMAIL" property="jobAlarmEmail" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="JOB_PARENT_KEY" property="jobParentKey" jdbcType="VARCHAR"/>
+    <result column="JOB_PLAN" property="jobPlan" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, JOB_KEY, GROUP_NAME, JOB_TRIGGER_TYPE, JOB_TRIGGER_VALUE, JOB_DESC, JOB_ALARM_EMAIL, CREATE_TIME,
+    UPDATE_TIME, JOB_PARENT_KEY, JOB_PLAN
+  </sql>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.timing.go.common.mapper.MetaJobMapper">
+  <resultMap id="BaseResultMap" type="org.timing.go.common.entity.MetaJobEntity">
+    <id column="ID" property="id" jdbcType="INTEGER"/>
+    <result column="META_JOB_KEY" property="metaJobKey" jdbcType="VARCHAR"/>
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR"/>
+    <result column="META_JOB_DESC" property="metaJobDesc" jdbcType="VARCHAR"/>
+    <result column="META_JOB_TYPE" property="metaJobType" jdbcType="VARCHAR"/>
+    <result column="META_JOB_SOURCE" property="metaJobSource" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, META_JOB_KEY, GROUP_NAME, META_JOB_DESC, META_JOB_TYPE, META_JOB_SOURCE, CREATE_TIME, UPDATE_TIME
+  </sql>
+</mapper>

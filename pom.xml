@@ -25,6 +25,7 @@
     <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
     <log4j2.version>2.12.1</log4j2.version>
     <curator.version>2.13.0</curator.version>
+    <druid.version>1.1.22</druid.version>
     <junit.version>4.12</junit.version>
   </properties>
 
@@ -66,6 +67,13 @@
         <artifactId>curator-recipes</artifactId>
         <version>${curator.version}</version>
       </dependency>
+      <!-- druid -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <!-- druid end -->
       <!-- junit -->
       <dependency>
         <groupId>junit</groupId>
