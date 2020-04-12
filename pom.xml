@@ -16,6 +16,7 @@
     <module>timing-go-common</module>
     <module>timing-go-alert</module>
     <module>timing-go-web</module>
+    <module>timing-go-executor-samples</module>
   </modules>
 
   <properties>
@@ -23,9 +24,9 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
+    <gson.version>2.8.6</gson.version>
     <log4j2.version>2.12.1</log4j2.version>
     <curator.version>2.13.0</curator.version>
-    <druid.version>1.1.22</druid.version>
     <junit.version>4.12</junit.version>
   </properties>
 
@@ -44,6 +45,13 @@
         <artifactId>spring-boot-autoconfigure</artifactId>
         <version>${spring.boot.version}</version>
       </dependency>
+      <!-- GSON -->
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+      <!-- GSON end. -->
       <!-- log4j2 -->
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -67,13 +75,6 @@
         <artifactId>curator-recipes</artifactId>
         <version>${curator.version}</version>
       </dependency>
-      <!-- druid -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>druid</artifactId>
-        <version>${druid.version}</version>
-      </dependency>
-      <!-- druid end -->
       <!-- junit -->
       <dependency>
         <groupId>junit</groupId>

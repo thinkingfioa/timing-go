@@ -32,15 +32,10 @@ public class SchedulerBootstrap implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     try {
-      printInfo();
       QuartzScheduler.getInstance().start();
       LOGGER.info("scheduler bootstrap start success.");
     } catch (Throwable cause) {
       LOGGER.error("scheduler bootstrap fail.", cause);
     }
-  }
-
-  public void printInfo() {
-    // TODO 输出配置信息.
   }
 }

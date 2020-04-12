@@ -10,11 +10,15 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>timing-go-common</artifactId>
+  <artifactId>timing-go-executor-samples</artifactId>
+
+  <name>timing-go-executor-samples</name>
 
   <properties>
-    <druid.version>1.1.22</druid.version>
-    <mysql.version>5.1.47</mysql.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <log4j2.version>2.12.1</log4j2.version>
   </properties>
 
   <dependencies>
@@ -33,7 +37,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- spring boot end -->
     <!-- GSON -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -44,43 +47,28 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
     </dependency>
     <dependency>
       <groupId>com.lmax</groupId>
       <artifactId>disruptor</artifactId>
+      <version>3.4.2</version>
     </dependency>
     <!-- log4j2 end -->
-    <!-- curator -->
-    <dependency>
-      <groupId>org.apache.curator</groupId>
-      <artifactId>curator-recipes</artifactId>
-    </dependency>
-    <!-- druid -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-      <version>${druid.version}</version>
-    </dependency>
-    <!-- druid end-->
-    <!-- mysql -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.version}</version>
-    </dependency>
-    <!-- mysql end -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-    <finalName>timing-go-common</finalName>
+    <finalName>timing-go-exector-samples</finalName>
   </build>
 </project>
