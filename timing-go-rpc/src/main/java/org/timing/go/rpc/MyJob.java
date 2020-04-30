@@ -16,5 +16,10 @@ public class MyJob implements Job {
   @Override
   public void execute(JobExecutionContext context) throws JobExecutionException {
     LOGGER.info("luweilin");
+//    long time = CommonUtils.currentTimeFormat();
+//    FileReadAndWriteUtil
+//        .write("./", "test.txt", String.valueOf(time) + "\n",
+//            StandardCharsets.UTF_8, true);
+//    System.out.println("llllllll");
   }
 }

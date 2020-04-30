@@ -27,13 +27,14 @@ public class MyScheduler {
 //    scheduler.shutdown();
 //    LOGGER.info("--------scheduler shutdown ! ------------");
 
-    String cron = "0 10 22 * * ?";
+    String cron = "0 03 21 * * ?";
 //    String cron = "0/1 * * * * ?";
 
-    for (int i = 0; i <= 1000; i++) {
+    for (int i = 0; i <= 10000; i++) {
       addJob(scheduler, cron, "job_" + i, "job_" + i);
     }
     LOGGER.info("6666666666666666");
+    scheduler.start();
 
   }
 
@@ -49,7 +50,7 @@ public class MyScheduler {
     //4、执行
     scheduler.scheduleJob(jobDetail, trigger);
     LOGGER.info("--------scheduler start ! ------------");
-    scheduler.start();
+
   }
 }
 
