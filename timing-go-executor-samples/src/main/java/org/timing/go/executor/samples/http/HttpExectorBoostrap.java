@@ -28,11 +28,12 @@ public class HttpExectorBoostrap implements CommandLineRunner {
   private ApplicationCfg appCfg;
 
   @Resource
-  private MetaJobHttpCfg httpAppCfg;
+  private MetaJobHttpCfg jobHttpCfg;
 
   @Override
   public void run(String... args) throws Exception {
-    LOGGER.info("Http Executor {} start {}:{}, zkSelfNampspace {}", appCfg.getAppName(),
-        appCfg.getServerAddress(), appCfg.getServerPort(), httpAppCfg.getZkSelfNamespace());
+    LOGGER.info("Http Executor {} start {}:{}, zkRootNampspace {}, zkSubNamespace {}",
+        appCfg.getAppName(), appCfg.getServerAddress(), appCfg.getServerPort(),
+        jobHttpCfg.getZkRootNamespace(), jobHttpCfg.getZkSubNamespace());
   }
 }

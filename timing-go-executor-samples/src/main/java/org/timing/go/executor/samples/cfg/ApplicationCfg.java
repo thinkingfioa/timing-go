@@ -16,7 +16,7 @@ public class ApplicationCfg {
   private String serverAddress;
 
   @Value(value = "${server.port:8080}")
-  private String serverPort;
+  private int serverPort;
 
   public String getAppName() {
     return appName;
@@ -26,7 +26,7 @@ public class ApplicationCfg {
     return serverAddress;
   }
 
-  public String getServerPort() {
+  public int getServerPort() {
     return serverPort;
   }
 }

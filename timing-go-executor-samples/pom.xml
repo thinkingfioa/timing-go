@@ -60,6 +60,12 @@
       <version>3.4.2</version>
     </dependency>
     <!-- log4j2 end -->
+    <!-- curator -->
+    <dependency>
+      <groupId>org.apache.curator</groupId>
+      <artifactId>curator-recipes</artifactId>
+    </dependency>
+    <!-- curator end -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
