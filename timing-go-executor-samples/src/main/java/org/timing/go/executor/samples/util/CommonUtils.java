@@ -3,9 +3,7 @@ package org.timing.go.executor.samples.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.List;
-import javax.annotation.Resource;
 import org.timing.go.executor.samples.SampleConstant;
-import org.timing.go.executor.samples.cfg.MetaJobHttpCfg;
 import org.timing.go.executor.samples.exception.InvalidArgumentException;
 
 /**
