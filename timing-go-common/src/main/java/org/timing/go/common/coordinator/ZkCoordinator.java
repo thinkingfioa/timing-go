@@ -41,7 +41,6 @@ public class ZkCoordinator implements IDistributeCoordinator {
       // crate zookeeper client
       CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
           .connectString(zkCfg.getZkQuorum()).retryPolicy(retryPolicy)
-          .namespace(zkCfg.getNamespace())
           .sessionTimeoutMs(zkCfg.getSessionTimemoutMs())
           .connectionTimeoutMs(zkCfg.getConnectionTimeoutMs());
 

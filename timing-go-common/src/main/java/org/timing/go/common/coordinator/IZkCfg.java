@@ -20,11 +20,13 @@ public interface IZkCfg {
 
   int getZkRetryMaxSleepTime();
 
-  String getNamespace();
-
   int getSessionTimemoutMs();
 
   int getConnectionTimeoutMs();
+
+  String getZkRootNamespace();
+
+  String getProjectZkSubNamespace();
 
   Charset dataCharset();
 }
