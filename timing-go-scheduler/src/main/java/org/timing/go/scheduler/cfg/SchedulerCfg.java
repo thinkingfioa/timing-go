@@ -8,44 +8,49 @@ import org.springframework.stereotype.Component;
 import org.timing.go.common.coordinator.IZkCfg;
 
 /**
- * 调度器 Zookeeper 配置. scheduler_zk.properties
+ * 调度器 Zookeeper 配置. scheduler.properties
  *
  * @author thinking_fioa 2020/1/5
  */
-
 @Component
-@PropertySource(value = {"classpath:scheduler_zk.properties"})
-public class SchedulerZkCfg implements IZkCfg {
+@PropertySource(value = {"classpath:scheduler.properties"})
+public class SchedulerCfg implements IZkCfg {
 
   /**
    * 格式为${ip1}:2181,${ip2}:2181
    */
-  @Value(value = "${zookeeper.quorum:127.0.0.1}")
+  @Value(value = "${zk.quorum:127.0.0.1}")
   private String zkQuorum;
 
   /**
    * unit ms
    */
-  @Value(value = "${zookeeper.base.sleep.time:1000}")
+  @Value(value = "${zk.base.sleep.time:1000}")
   private int zkRetryBaseSleepTime;
 
-  @Value(value = "${zookeeper.max.retries:5}")
+  @Value(value = "${zk.max.retries:5}")
   private int zkMaxRetries;
 
   /**
    * unit ms
    */
-  @Value(value = "${zookeeper.retry.max.sleep.time:3000}")
+  @Value(value = "${zk.retry.max.sleep.time:3000}")
   private int zkRetryMaxSleepTime;
 
-  @Value(value = "${zookeeper.namespace:/timing-go/scheduler}")
-  private String namespace;
-
-  @Value(value = "${zookeeper.session.timeout.ms:3000}")
+  @Value(value = "${zk.session.timeout.ms:3000}")
   private int sessionTimemoutMs;
 
-  @Value(value = "${zookeeper.connection.timeout.ms:3000}")
+  @Value(value = "${zk.connection.timeout.ms:3000}")
   private int connectionTimeoutMs;
+
+  @Value(value = "${zk.root.namespace:TimingGo}")
+  private String zkRootNamespace;
+
+  @Value(value = "${project.zk.sub.namespace:Scheduler}")
+  private String projectZkSubNamespace;
+
+  @Value(value = "${meta.job.http.zk.sub.namespace:Scheduler}")
+  private String metaJobHttpZkSubNs;
 
   @Override
   public String getZkQuorum() {
@@ -68,11 +73,6 @@ public class SchedulerZkCfg implements IZkCfg {
   }
 
   @Override
-  public String getNamespace() {
-    return namespace;
-  }
-
-  @Override
   public int getSessionTimemoutMs() {
     return sessionTimemoutMs;
   }
@@ -83,7 +83,22 @@ public class SchedulerZkCfg implements IZkCfg {
   }
 
   @Override
+  public String getZkRootNamespace() {
+    return zkRootNamespace;
+  }
+
+  @Override
+  public String getProjectZkSubNamespace() {
+    return projectZkSubNamespace;
+  }
+
+  public String getMetaJobHttpZkSubNs() {
+    return metaJobHttpZkSubNs;
+  }
+
+  @Override
   public Charset dataCharset() {
     return StandardCharsets.UTF_8;
   }
+
 }

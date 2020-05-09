@@ -15,6 +15,9 @@ import org.quartz.Trigger.TriggerState;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.timing.go.scheduler.util.CommonUtils;
 
 /**
@@ -22,7 +25,9 @@ import org.timing.go.scheduler.util.CommonUtils;
  *
  * @author thinking_fioa 2020/2/16
  */
-public class QuartzScheduler {
+@Component
+@Order(value = 2)
+public class QuartzScheduler implements CommandLineRunner {
 
   private static final Logger LOGGER = LogManager.getLogger(QuartzScheduler.class);
 
@@ -33,24 +38,22 @@ public class QuartzScheduler {
 
   private Scheduler scheduler;
 
-  /**
-   * 全局单例
-   */
-  public static QuartzScheduler getInstance() {
-    return QuartzSchedulerHolder.INSTANCE;
-  }
-
-  private QuartzScheduler() {
+  @Override
+  public void run(String... args) throws Exception {
     try {
       SchedulerFactory schedulerFactory = new StdSchedulerFactory(QUARTZ_FILE_NAME);
       scheduler = schedulerFactory.getScheduler();
       // 设置Trigger Misfire 监听器.
       scheduler.getListenerManager().addTriggerListener(new JobTriggerListener());
+      // 启动
+      start();
     } catch (SchedulerException cause) {
       LOGGER.error("create quartz scheduler fail exit.", cause);
       System.exit(1);
     }
+
   }
+
 
   /**
    * 启动Quartz
@@ -203,10 +206,5 @@ public class QuartzScheduler {
     scheduler.triggerJob(jobKey);
     LOGGER.debug("jobName {}, jobGroupName {} trigger success.", jobName, jobGroupName);
     return true;
-  }
-
-  private static class QuartzSchedulerHolder {
-
-    private static final QuartzScheduler INSTANCE = new QuartzScheduler();
   }
 }
