@@ -18,7 +18,6 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.timing.go.scheduler.util.CommonUtils;
 
 /**
  * 基于Quartz 实现调度器.

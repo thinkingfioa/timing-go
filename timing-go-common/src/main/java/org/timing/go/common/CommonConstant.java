@@ -17,10 +17,17 @@ public class CommonConstant {
    */
   public static final String BACKSLASH = "/";
 
+  public static final char BACKSLASH_CHAR = '/';
+
   /**
    * 斜杠.
    */
   public static final String SLASH = "\\";
 
   public static final String EMPTY_STR = "";
+
+  /**
+   * 下划线
+   */
+  public static final String UNDERLINE = "_";
 }

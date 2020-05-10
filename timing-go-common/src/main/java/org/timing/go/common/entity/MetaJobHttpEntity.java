@@ -1,6 +1,10 @@
 package org.timing.go.common.entity;
 
 import java.util.Date;
+import java.util.List;
+import org.timing.go.common.util.CommonUtils;
+import org.timing.go.common.util.GsonUtils;
+import org.timing.go.common.zkbean.MetaJobHttpZkBean;
 
 /**
  * 数据库表 TIMING_GO_META_JOB_HTTP 的实体类
@@ -26,13 +30,33 @@ public class MetaJobHttpEntity {
    */
   private int httpType;
 
+  /**
+   * 0-无参数; 1-有参数。
+   */
   private int httpParamFlag;
 
-  private int httpParamContent;
+  private String httpParamContent;
 
   private Date createTime;
 
   private Date updateTime;
+
+  public MetaJobHttpEntity(MetaJobHttpZkBean zkBean) {
+    metaJobKey = zkBean.getMetaJobKey();
+    httpAppName = zkBean.getAppName();
+    httpPath = zkBean.getHttpPath();
+    httpIp = zkBean.getIp();
+    httpPort = zkBean.getPort();
+    httpType = zkBean.getHttpType().getType();
+    List<String> inputList = zkBean.getInputList();
+    if (CommonUtils.emptyCheck(inputList)) {
+      httpParamFlag = 0;
+      httpParamContent = null;
+    } else {
+      httpParamFlag = 1;
+      httpParamContent = GsonUtils.toString(inputList);
+    }
+  }
 
   public int getId() {
     return id;
@@ -66,7 +90,7 @@ public class MetaJobHttpEntity {
     return httpParamFlag;
   }
 
-  public int getHttpParamContent() {
+  public String getHttpParamContent() {
     return httpParamContent;
   }
 

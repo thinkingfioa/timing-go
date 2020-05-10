@@ -48,6 +48,24 @@ public class StringUtils {
     return sb.toString();
   }
 
+  /**
+   * 更具Zk的路径地址，获取深度
+   */
+  public static int calDepthOfZkPath(String zkPath) {
+    if (emptyCheck(zkPath)) {
+      return 0;
+    }
+
+    int count = 0;
+    char[] zkPathChars = zkPath.toCharArray();
+    for (char single : zkPathChars) {
+      if (single == CommonConstant.BACKSLASH_CHAR) {
+        count++;
+      }
+    }
+    return count;
+  }
+
 
   /**
    * 以特殊关键字结尾.

@@ -14,7 +14,18 @@
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
   </resultMap>
 
-  <sql id="Base_Column_List">
+  <sql id="DataColumnList">
+    META_JOB_KEY, GROUP_NAME, META_JOB_DESC, META_JOB_TYPE, META_JOB_SOURCE, CREATE_TIME, UPDATE_TIME
+  </sql>
+
+  <sql id="BaseColumnList">
     ID, META_JOB_KEY, GROUP_NAME, META_JOB_DESC, META_JOB_TYPE, META_JOB_SOURCE, CREATE_TIME, UPDATE_TIME
   </sql>
+
+  <select id="selectMetaJob" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT
+    <include refid="BaseColumnList"/>
+    FROM TIMING_GO_META_JOB AS t
+    WHERE t.META_JOB_KEY = #{metaJobKey} AND t.GROUP_NAME = #{groupName}
+  </select>
 </mapper>

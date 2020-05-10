@@ -15,6 +15,7 @@
   <properties>
     <druid.version>1.1.22</druid.version>
     <mysql.version>5.1.47</mysql.version>
+    <mybaits.version>3.5.4</mybaits.version>
   </properties>
 
   <dependencies>
@@ -73,6 +74,13 @@
       <version>${mysql.version}</version>
     </dependency>
     <!-- mysql end -->
+    <!-- mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybaits.version}</version>
+    </dependency>
+    <!-- mybatis end -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

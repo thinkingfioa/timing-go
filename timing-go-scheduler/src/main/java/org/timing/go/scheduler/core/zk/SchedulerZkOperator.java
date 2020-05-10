@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.timing.go.common.coordinator.ZkCoordinator;
 import org.timing.go.common.exception.InvalidArgumentException;
 import org.timing.go.scheduler.cfg.SchedulerCfg;
-import org.timing.go.scheduler.util.CommonUtils;
 
 /**
  * 调度器的Zk操作

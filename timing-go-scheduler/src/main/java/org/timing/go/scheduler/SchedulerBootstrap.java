@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @author thinking_fioa 08/12/2019
  */
 @SpringBootApplication
-@Component("org.timing.go.scheduler")
+@Component("org.timing.go")
 public class SchedulerBootstrap {
 
   private static final Logger LOGGER = LogManager.getLogger(SchedulerBootstrap.class);
