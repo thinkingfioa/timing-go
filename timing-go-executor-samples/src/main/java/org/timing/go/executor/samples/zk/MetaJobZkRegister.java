@@ -19,10 +19,11 @@ import org.apache.zookeeper.data.Stat;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.timing.go.common.util.GsonUtils;
+import org.timing.go.common.util.StringUtils;
+import org.timing.go.common.zkbean.MetaJobHttpZkBean;
 import org.timing.go.executor.samples.SampleConstant;
 import org.timing.go.executor.samples.cfg.MetaJobHttpCfg;
-import org.timing.go.executor.samples.entity.MetaJobHttpEntity;
-import org.timing.go.executor.samples.util.CommonUtils;
 
 /**
  * 元数据注册中心.
@@ -86,27 +87,27 @@ public class MetaJobZkRegister implements ApplicationListener<ContextRefreshedEv
   /**
    * 上传MetaHttpJob
    */
-  public void upLoadMetaJobHttp(MetaJobHttpEntity httpEntity) {
+  public void upLoadMetaJobHttp(MetaJobHttpZkBean zkBean) {
     try {
-      String projectZkPath = buildProjectZkPath(httpEntity);
+      String projectZkPath = buildProjectZkPath(zkBean);
       if (!isExisted(projectZkPath)) {
         // 创建项目节点, 持久化节点.
         createPersistent(projectZkPath, SampleConstant.EMPTY_STR);
         LOGGER.info("create zk path {}. {}", projectZkPath, jobHttpCfg.getZkQuorum());
       }
       // 创建临时HttpPath节点
-      String transformHttpUrl = CommonUtils.transformUrl(httpEntity.getHttpPath());
-      String metaJobHttpPath = CommonUtils.buildZkPath(projectZkPath, transformHttpUrl);
+      String transformHttpUrl = StringUtils.transformUrl(zkBean.getHttpPath());
+      String metaJobHttpPath = StringUtils.buildZkPath(projectZkPath, transformHttpUrl);
       if (!isExisted(metaJobHttpPath)) {
-        createEphemeral(metaJobHttpPath, CommonUtils.toJson(httpEntity));
+        createEphemeral(metaJobHttpPath, GsonUtils.toPrettyJson(zkBean));
       } else {
         LOGGER.info("{} existed.", metaJobHttpPath);
         // 应用重启时，可能存在临时节点来得及删除，添加监听器
-        watchNodeDeleted(metaJobHttpPath, httpEntity);
+        watchNodeDeleted(metaJobHttpPath, zkBean);
       }
     } catch (Exception cause) {
-      LOGGER.warn("upload MetaJob failed.{}, {}, {}", httpEntity.getAppName(),
-          httpEntity.getHttpPath(), httpEntity.getMetaJobHttpDesc(), cause);
+      LOGGER.warn("upload MetaJob failed.{}, {}, {}", zkBean.getAppName(),
+          zkBean.getHttpPath(), zkBean.getMetaJobDesc(), cause);
     }
   }
 
@@ -216,28 +217,28 @@ public class MetaJobZkRegister implements ApplicationListener<ContextRefreshedEv
    *
    * /TimingGo/MetaJobHttp/Register/GroupName/AppName/Ip:Port
    */
-  private String buildProjectZkPath(MetaJobHttpEntity httpEntity) {
-    String ipAndPort = String.format("%s:%s", httpEntity.getIp(), httpEntity.getPort());
+  private String buildProjectZkPath(MetaJobHttpZkBean zkBean) {
+    String ipAndPort = String.format("%s:%s", zkBean.getIp(), zkBean.getPort());
 
-    return CommonUtils.buildZkPath(jobHttpCfg.getZkRootNamespace(), jobHttpCfg.getZkSubNamespace(),
-        SampleConstant.META_JOB_SOURCE, httpEntity.getGroupName(), httpEntity.getAppName(),
+    return StringUtils.buildZkPath(jobHttpCfg.getZkRootNamespace(), jobHttpCfg.getZkSubNamespace(),
+        SampleConstant.META_JOB_SOURCE, zkBean.getGroupName(), zkBean.getAppName(),
         ipAndPort);
   }
 
-  private void watchNodeDeleted(String metaJobHttpPath, MetaJobHttpEntity httpEntity) {
+  private void watchNodeDeleted(String metaJobHttpPath, MetaJobHttpZkBean zkBean) {
     try {
       zkClient.getZookeeperClient().getZooKeeper()
           .exists(metaJobHttpPath, (WatchedEvent event) -> {
             if (event.getType().equals(EventType.NodeDeleted)) {
-              createEphemeral(metaJobHttpPath, CommonUtils.toJson(httpEntity));
+              createEphemeral(metaJobHttpPath, GsonUtils.toPrettyJson(zkBean));
             } else {
               // ZK的监听机制仅一次有效
-              watchNodeDeleted(metaJobHttpPath, httpEntity);
+              watchNodeDeleted(metaJobHttpPath, zkBean);
             }
           });
     } catch (Exception cause) {
-      LOGGER.warn("upload MetaJob failed.{}, {}, {}", httpEntity.getAppName(),
-          httpEntity.getHttpPath(), httpEntity.getMetaJobHttpDesc(), cause);
+      LOGGER.warn("upload MetaJob failed.{}, {}, {}", zkBean.getAppName(),
+          zkBean.getHttpPath(), zkBean.getMetaJobDesc(), cause);
     }
   }
 }

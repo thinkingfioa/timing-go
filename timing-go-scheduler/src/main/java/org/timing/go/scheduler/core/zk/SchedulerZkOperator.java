@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.timing.go.common.coordinator.ZkCoordinator;
 import org.timing.go.common.exception.InvalidArgumentException;
+import org.timing.go.common.util.CommonUtils;
 import org.timing.go.scheduler.cfg.SchedulerCfg;
 
 /**

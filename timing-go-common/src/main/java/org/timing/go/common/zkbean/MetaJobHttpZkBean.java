@@ -60,17 +60,17 @@ public class MetaJobHttpZkBean extends MetaJobZkBean {
    */
   public MetaJobHttpZkBean(String metaJobKey, String groupName, String metaJobDesc,
       MetaJobTypeEnum metaJobType, MetaJobSourceEnum metaJobSource, String appName,
-      String ip, int port, String httpPath, MetaJobHttpTypeEnum httpType, String clazzName,
-      String methodName, String outputClazz, List<String> inputList) {
+      String ip, int port, String httpPath, MetaJobHttpTypeEnum httpType, Class<?> clazzName,
+      String methodName, Class<?> outputClazz, List<String> inputList) {
     super(metaJobKey, groupName, metaJobDesc, metaJobType, metaJobSource);
     this.appName = appName;
     this.ip = ip;
     this.port = port;
     this.httpPath = httpPath;
     this.httpType = httpType;
-    this.clazzName = clazzName;
+    this.clazzName = clazzName.getName();
     this.methodName = methodName;
-    this.outputClazz = outputClazz;
+    this.outputClazz = outputClazz.getName();
     this.inputList = inputList;
   }
 

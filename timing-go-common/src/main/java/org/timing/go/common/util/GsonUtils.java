@@ -21,11 +21,11 @@ public class GsonUtils {
   /**
    * 对象转字符串.
    */
-  public static String toPrettyString(Object obj) {
+  public static String toPrettyJson(Object obj) {
     return GSON_PRETTY.toJson(obj);
   }
 
-  public static String toString(Object obj) {
+  public static String toJson(Object obj) {
     return GSON.toJson(obj);
   }
 

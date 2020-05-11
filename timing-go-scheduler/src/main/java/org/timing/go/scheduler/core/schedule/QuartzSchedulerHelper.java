@@ -11,6 +11,7 @@ import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
 import org.quartz.SchedulerException;
+import org.timing.go.common.util.CommonUtils;
 
 /**
  * Quartz 调度器帮助器.

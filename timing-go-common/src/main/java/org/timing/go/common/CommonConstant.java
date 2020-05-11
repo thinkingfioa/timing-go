@@ -19,6 +19,7 @@ public class CommonConstant {
 
   public static final char BACKSLASH_CHAR = '/';
 
+
   /**
    * 斜杠.
    */
@@ -30,4 +31,9 @@ public class CommonConstant {
    * 下划线
    */
   public static final String UNDERLINE = "_";
+
+  /**
+   * 加号.
+   */
+  public static final String PLUS = "+";
 }

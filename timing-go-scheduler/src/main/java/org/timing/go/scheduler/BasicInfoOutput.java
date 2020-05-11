@@ -28,8 +28,8 @@ public class BasicInfoOutput implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    LOGGER.info("Scheduler {} start {}:{}, zkRootNampspace {}, zkSubNamespace {}",
+    LOGGER.info("Scheduler {} start {}:{}, zkRootNampspace {}, projectZkSubNamespace {}",
         appCfg.getAppName(), appCfg.getServerAddress(), appCfg.getServerPort(),
-        schedulerCfg.getZkRootNamespace(), schedulerCfg.getZkSubNamespace());
+        schedulerCfg.getZkRootNamespace(), schedulerCfg.getProjectZkSubNamespace());
   }
 }

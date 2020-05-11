@@ -54,7 +54,7 @@ public class MetaJobHttpEntity {
       httpParamContent = null;
     } else {
       httpParamFlag = 1;
-      httpParamContent = GsonUtils.toString(inputList);
+      httpParamContent = GsonUtils.toJson(inputList);
     }
   }
 

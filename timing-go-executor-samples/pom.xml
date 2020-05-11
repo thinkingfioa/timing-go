@@ -37,6 +37,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- common module-->
+    <dependency>
+      <groupId>thinking_fioa</groupId>
+      <artifactId>timing-go-common</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
     <!-- GSON -->
     <dependency>
       <groupId>com.google.code.gson</groupId>

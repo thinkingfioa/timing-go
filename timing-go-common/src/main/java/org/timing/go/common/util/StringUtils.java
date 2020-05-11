@@ -1,5 +1,6 @@
 package org.timing.go.common.util;
 
+import java.util.List;
 import org.timing.go.common.CommonConstant;
 import org.timing.go.common.exception.InvalidArgumentException;
 
@@ -16,6 +17,10 @@ public class StringUtils {
 
   public static boolean emptyCheck(String str) {
     return null == str || str.trim().isEmpty();
+  }
+
+  public static boolean emptyList(List<?> list) {
+    return null == list || list.isEmpty();
   }
 
   /**
@@ -75,9 +80,26 @@ public class StringUtils {
   }
 
   /**
+   * 转换Url. 将 '／'替换为 '\'
+   */
+  public static String transformUrl(String url) {
+    if (emptyCheck(url)) {
+      return url;
+    }
+    return url.replace(CommonConstant.BACKSLASH, CommonConstant.SLASH);
+  }
+
+  /**
    * 以特殊关键字结尾.
    */
   public static boolean startsWith(String str, String suffix) {
     return !emptyCheck(str) && str.startsWith(suffix);
+  }
+
+  /**
+   * 合并字符串.
+   */
+  public static String join(CharSequence delimiter, CharSequence... elements) {
+    return String.join(delimiter, elements);
   }
 }

@@ -8,11 +8,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.timing.go.common.CommonConstant;
+import org.timing.go.common.util.GsonUtils;
+import org.timing.go.common.util.StringUtils;
+import org.timing.go.common.zkbean.MetaJobHttpTypeEnum;
+import org.timing.go.common.zkbean.MetaJobHttpZkBean;
+import org.timing.go.common.zkbean.MetaJobSourceEnum;
+import org.timing.go.common.zkbean.MetaJobTypeEnum;
 import org.timing.go.executor.samples.cfg.ApplicationCfg;
 import org.timing.go.executor.samples.cfg.MetaJobHttpCfg;
-import org.timing.go.executor.samples.entity.MetaJobHttpEntity;
-import org.timing.go.executor.samples.entity.MetaJobHttpEntity.HttpTypeEnum;
-import org.timing.go.executor.samples.util.GsonUtils;
 import org.timing.go.executor.samples.zk.MetaJobZkRegister;
 
 /**
@@ -42,12 +46,13 @@ public class HttpController {
     LOGGER.info("httpJob1 executor success.");
 
     // upload
-    MetaJobHttpEntity jobHttpEntity = new MetaJobHttpEntity(jobHttpCfg.getGroupName(),
-        appCfg.getAppName(), appCfg.getServerAddress(), appCfg.getServerPort(), "/httpJob1",
-        HttpTypeEnum.GET, HttpController.class, "httpJob1", String.class, new ArrayList<>(),
-        "测试方法");
-    zkRegister.upLoadMetaJobHttp(jobHttpEntity);
+    String metaJobKey = StringUtils.join(CommonConstant.PLUS, appCfg.getAppName(), "/httpJob1");
+    MetaJobHttpZkBean zkBean = new MetaJobHttpZkBean(metaJobKey, jobHttpCfg.getGroupName(), "测试方法",
+        MetaJobTypeEnum.HTTP, MetaJobSourceEnum.REGISTER, appCfg.getAppName(),
+        appCfg.getServerAddress(), appCfg.getServerPort(), "/httpJob1", MetaJobHttpTypeEnum.GET,
+        HttpController.class, "httpJob1", String.class, new ArrayList<>());
+    zkRegister.upLoadMetaJobHttp(zkBean);
 
-    return GsonUtils.toString(info);
+    return GsonUtils.toPrettyJson(info);
   }
 }
