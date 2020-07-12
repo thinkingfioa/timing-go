@@ -28,4 +28,18 @@
     FROM TIMING_GO_META_JOB AS t
     WHERE t.META_JOB_KEY = #{metaJobKey} AND t.GROUP_NAME = #{groupName}
   </select>
+
+  <update id="updateMetaJob" parameterType="org.timing.go.common.entity.MetaJobEntity">
+    UPDATE TIMING_GO_META_JOB
+    set
+    META_JOB_DESC = #{metaJobDesc},
+    META_JOB_TYPE = #{metaJobType},
+    META_JOB_SOURCE = #{metaJobSource},
+    UPDATE_TIME = NOW()
+    WHERE META_JOB_KEY = #{metaJobKey} and GROUP_NAME = #{groupName}
+  </update>
+
+  <insert id="insertOrUpdateMetaJob" parameterType="org.timing.go.common.entity.MetaJobEntity">
+
+  </insert>
 </mapper>

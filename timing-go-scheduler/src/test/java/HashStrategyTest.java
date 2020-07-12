@@ -15,7 +15,7 @@ import org.timing.go.scheduler.util.ConsistentHashStrategy;
 /**
  * @author thinking_fioa 2020/5/30
  */
-public class Test {
+public class HashStrategyTest {
 
   private static List<String> exectorAddressList = new ArrayList<>();
 
@@ -115,17 +115,4 @@ public class Test {
     return hashResultMap;
   }
 
-//  private static class Result {
-//
-//    private int taskNode;
-//    private int shardingNode;
-//
-//    private String executor;
-//
-//    public Result(int taskNode, int shardingNode, String executor) {
-//      this.taskNode = taskNode;
-//      this.shardingNode = shardingNode;
-//      this.executor = executor;
-//    }
-//  }
 }

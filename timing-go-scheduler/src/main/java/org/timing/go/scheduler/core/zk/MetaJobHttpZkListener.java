@@ -134,6 +134,11 @@ public class MetaJobHttpZkListener implements CommandLineRunner {
       return;
     }
     MetaJobHttpZkBean metaJobHttpBean = GsonUtils.fromJson(metaJobData, MetaJobHttpZkBean.class);
+    try {
+      metaJobService.insertOrUpdateMetaJobHttp(metaJobHttpBean);
+    } catch (Exception cause) {
+      LOGGER.warn("MetaJobHttp {} insert to db failed.", metaJobHttpBean.getMetaJobKey());
+    }
 
   }
 
