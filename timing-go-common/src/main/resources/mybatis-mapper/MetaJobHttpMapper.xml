@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.timing.go.common.mapper.MetaJobHttpMapper">
+  <resultMap id="BaseResultMap" type="org.timing.go.common.entity.MetaJobHttpEntity">
+    <id column="ID" property="id" jdbcType="INTEGER"/>
+    <result column="META_JOB_KEY" property="metaJobKey" jdbcType="VARCHAR"/>
+    <result column="HTTP_APP_NAME" property="httpAppName" jdbcType="VARCHAR"/>
+    <result column="HTTP_PATH" property="httpPath" jdbcType="VARCHAR"/>
+    <result column="HTTP_IP" property="httpIp" jdbcType="VARCHAR"/>
+    <result column="HTTP_PORT" property="httpPort" jdbcType="INTEGER"/>
+    <result column="HTTP_TYPE" property="httpType" jdbcType="INTEGER"/>
+    <result column="HTTP_PARAM_FLAG" property="httpParamFlag" jdbcType="INTEGER"/>
+    <result column="HTTP_PARAM_CONTENT" property="httpParamContent" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, META_JOB_KEY, HTTP_APP_NAME, HTTP_PATH, HTTP_IP, HTTP_PORT, HTTP_TYPE, HTTP_PARAM_FLAG,
+    HTTP_PARAM_CONTENT, CREATE_TIME, UPDATE_TIME
+  </sql>
+</mapper>

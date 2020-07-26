@@ -12,16 +12,34 @@
 
   <artifactId>timing-go-scheduler</artifactId>
 
-  <name>timing-go-scheduler</name>
-
   <dependencies>
+    <!-- common module-->
+    <dependency>
+      <groupId>thinking_fioa</groupId>
+      <artifactId>timing-go-common</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <!-- quartz -->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <!-- mybatis -->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>1.3.4</version>
+    </dependency>
+    <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-
+    <finalName>timing-go-scheduler</finalName>
   </build>
 </project>
