@@ -5,4 +5,8 @@ package org.timing.go.executor.samples;
  */
 public class Delete {
 
+  public static void main(String[] args) {
+
+  }
+
 }
