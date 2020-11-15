@@ -1,0 +1,49 @@
+package demo;
+
+import com.alibaba.fastjson.JSONObject;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * @author thinking_fioa 2020/11/15
+ */
+public class BaseRegex {
+
+  private static final String EMAIL_REGEX = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+  private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+  private static final String PHONE_REGEX = "\\+86\\d{11}";
+  private static final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
+
+  public static void main(String[] args) {
+    String email = "thinking_fioa@163.com";
+    String phone = "+8618918509525";
+    System.out.println("email=" + email + ", " + validEmail(email));
+    System.out.println("phone=" + phone + ", +" + validPhone(phone));
+
+    // JSONObject
+    JSONObject jsonObject = JSONObject.parseObject(jsonStr());
+    Map<String, String> validsMap = jsonObject.getObject("valids", Map.class);
+    System.out.println(validsMap);
+  }
+
+  public static boolean validEmail(String email) {
+    Matcher portMatcher = EMAIL_PATTERN.matcher(String.valueOf(email));
+    return portMatcher.find();
+  }
+
+  public static boolean validPhone(String phone) {
+    Matcher portMatcher = PHONE_PATTERN.matcher(String.valueOf(phone));
+    return portMatcher.find();
+  }
+
+  public static String jsonStr() {
+    return "{"
+        + "\"valids\":{"
+        + "\"用户名\":\"thinking_fioa\","
+        + "\"密码\":\"123456\""
+        + "}"
+        + "}";
+  }
+}

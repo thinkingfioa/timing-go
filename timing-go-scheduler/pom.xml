@@ -13,6 +13,11 @@
   <artifactId>timing-go-scheduler</artifactId>
 
   <dependencies>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.75</version>
+    </dependency>
     <!-- common module-->
     <dependency>
       <groupId>thinking_fioa</groupId>
