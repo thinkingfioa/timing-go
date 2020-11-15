@@ -30,12 +30,18 @@ public class BaseRegex {
 
   public static boolean validEmail(String email) {
     Matcher portMatcher = EMAIL_PATTERN.matcher(String.valueOf(email));
+    System.out.println("1111111111");
     return portMatcher.find();
   }
 
   public static boolean validPhone(String phone) {
     Matcher portMatcher = PHONE_PATTERN.matcher(String.valueOf(phone));
+    System.out.println("222222222");
     return portMatcher.find();
+  }
+
+  public static void addPhone() {
+    System.out.println("addPhone");
   }
 
   public static String jsonStr() {
