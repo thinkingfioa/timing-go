@@ -1,6 +1,6 @@
 package demo;
 
-import com.alibaba.fastjson.JSONObject;
+//import com.alibaba.fastjson.JSONObject;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,24 +18,28 @@ public class BaseRegex {
 
   public static void main(String[] args) {
     String email = "thinking_fioa@163.com";
+    String email1 = "ppp@123.cn";
     String phone = "+8618918509525";
+    String phone1 = "12334567890";
     System.out.println("email=" + email + ", " + validEmail(email));
-    System.out.println("phone=" + phone + ", +" + validPhone(phone));
+    System.out.println("email1=" + email1 + ", " + validEmail(email1));
+    System.out.println("phone=" + phone + ", " + validPhone(phone));
+    System.out.println("phone1=" + phone1 + ", " + validPhone(phone1));
 
     // JSONObject
-    JSONObject jsonObject = JSONObject.parseObject(jsonStr());
-    Map<String, String> validsMap = jsonObject.getObject("valids", Map.class);
-    System.out.println(validsMap);
+//    JSONObject jsonObject = JSONObject.parseObject(jsonStr());
+//    Map<String, String> validsMap = jsonObject.getObject("valids", Map.class);
+//    System.out.println(validsMap);
   }
 
   public static boolean validEmail(String email) {
-    Matcher portMatcher = EMAIL_PATTERN.matcher(String.valueOf(email));
-    return portMatcher.find();
+    Matcher emailMatcher = EMAIL_PATTERN.matcher(email);
+    return emailMatcher.find();
   }
 
   public static boolean validPhone(String phone) {
-    Matcher portMatcher = PHONE_PATTERN.matcher(String.valueOf(phone));
-    return portMatcher.find();
+    Matcher phoneMatcher = PHONE_PATTERN.matcher(phone);
+    return phoneMatcher.find();
   }
 
   public static String jsonStr() {
