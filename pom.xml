@@ -12,7 +12,6 @@
   <modules>
     <module>timing-go-scheduler</module>
     <module>timing-go-executor</module>
-    <module>timing-go-rpc</module>
     <module>timing-go-common</module>
     <module>timing-go-alert</module>
     <module>timing-go-web</module>
