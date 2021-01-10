@@ -16,6 +16,7 @@
     <module>timing-go-alert</module>
     <module>timing-go-web</module>
     <module>timing-go-executor-samples</module>
+    <module>timing-go-http-interceptor</module>
   </modules>
 
   <properties>
